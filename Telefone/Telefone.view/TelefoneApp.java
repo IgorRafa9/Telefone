@@ -36,7 +36,8 @@ public class TelefoneApp {
 			System.out.println("4 - Existe contato");
 			System.out.println("5 - Eliminar contato");
 			System.out.println("6 - Espaço para contatos disponíveis.");
-			System.out.println("7 - Sair");
+			System.out.println("7 - Espaço na agenda");
+			System.out.println("8 - Sair");
 			
 				System.out.println("Escreva um das opções");
 				opc = key.nextInt();
@@ -104,10 +105,11 @@ public class TelefoneApp {
 						}else {
 							System.out.println("Pode inserir novos contatos");
 						}
+						break;
+					case 7:
+						System.out.println("Ainda restam: "+agenda.contatosLivres()+" espaços livres na agenda.");				
+						break;
 					case 8:
-						System.out.println("Espaço pra novos contatos: ");
-						
-					case 9:	
 						sair = true;
 						break;
 					default:
