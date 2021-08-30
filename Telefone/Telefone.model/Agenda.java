@@ -3,7 +3,7 @@
 import java.util.Arrays;
 
 public class Agenda{
-	private Contatos[] contatos;//
+	private Contatos[] contatos;
 	
 	public Agenda() {
 		this.contatos = new Contatos[25000];
