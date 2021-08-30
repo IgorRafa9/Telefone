@@ -82,5 +82,23 @@ public class Agenda{
 			System.out.println("Contato "+c.getNome()+" eliminado");
 		}
 	}
+	public boolean agendaCheia() {
+		for(int i=0;i<contatos.length;i++) {
+			if(contatos[i] == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public int contatosLivres() {
+		int contadorL=0;
+		for(int i=0;i<contatos.length;i++) {
+			if(contatos[i]==null) {
+				contadorL++;
+			}
+		}
+		return contadorL;
+	}
 	
 }
