@@ -1,13 +1,16 @@
 package Telefone.view;
 
-import java.io.BufferedReader;
+import java.io.BufferedReader; 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import Telefone.model.Contatos;
 import Telefone.model.Agenda;
+
 
 public class TelefoneApp {
 
@@ -21,7 +24,7 @@ public class TelefoneApp {
 		int tel,cod_tel;
 		String name,resp;
 		
-		Agenda agenda = new Agenda(3);
+		Agenda agenda = new Agenda(25000);
 		Contatos c;		
 		while(!sair) {
 		
@@ -32,9 +35,10 @@ public class TelefoneApp {
 			System.out.println("3 - Buscar contato");
 			System.out.println("4 - Existe contato");
 			System.out.println("5 - Eliminar contato");
-			System.out.println("6 - Sair");
+			System.out.println("6 - Espa√ßo para contatos dispon√≠veis.");
+			System.out.println("7 - Sair");
 			
-				System.out.println("Escreva um das opÁıes");
+				System.out.println("Escreva um das op√ß√µes");
 				opc = key.nextInt();
 				
 				switch (opc) {
@@ -54,7 +58,7 @@ public class TelefoneApp {
 			
 						break;
 					case 2:
-						agenda.listarContatos();						
+						agenda.listarContatos();
 						break;
 					case 3:
 						System.out.println("Nome: ");
@@ -64,7 +68,7 @@ public class TelefoneApp {
 							agenda.buscarContatoPorNome(name);
 							
 						}catch (Exception e) {
-							throw new NullPointerException("N„o existe esse contato");
+							throw new NullPointerException("N√£o existe esse contato");
 						}
 						System.out.println("==========================================");
 						break;
@@ -79,7 +83,7 @@ public class TelefoneApp {
 							System.out.println("Contato existe");
 							System.out.println("==========================================");
 						}else {
-							System.out.println("Contato n„o existe");
+							System.out.println("Contato n√£o existe");
 							System.out.println("==========================================");
 						}
 						
@@ -93,20 +97,29 @@ public class TelefoneApp {
 						agenda.eliminarContato(c);
 						System.out.println("==========================================");
 						break;
+						
 					case 6:
+						if(agenda.agendaCheia()) {
+							System.out.println("Agenda est√° cheia");
+						}else {
+							System.out.println("Pode inserir novos contatos");
+						}
+					case 8:
+						System.out.println("Espa√ßo pra novos contatos: ");
+						
+					case 9:	
 						sair = true;
 						break;
 					default:
-						System.out.println("Apenas n˙meros entre 1 e 5");
+						System.out.println("Apenas n√∫meros entre 1 e 5");
 					}
 				System.out.println("Mais alguma coisa?");
 				resp = buffreader.readLine();
 				System.out.println("==========================================");
 			}while(resp.equalsIgnoreCase("s"));
-			key.close();
 			System.out.println("Saiu");
 			}catch(InputMismatchException e) {
-				System.out.println("Insira o n˙mero: ");
+				System.out.println("Insira o n√∫mero: ");
 				key.next();
 			}
 		
