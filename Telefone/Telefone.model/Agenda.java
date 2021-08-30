@@ -2,11 +2,11 @@
 
 import java.util.Arrays;
 
-public class Agenda {
+public class Agenda{
 	private Contatos[] contatos;
 	
 	public Agenda() {
-		this.contatos = new Contatos[10];
+		this.contatos = new Contatos[25000];
 	}
 	
 	public Agenda(int tamanho) {
@@ -15,24 +15,26 @@ public class Agenda {
 	
 	public void addContato(Contatos c) {		
 		if(existeContato(c)) {
-			System.out.println("O contato com esse nome j· existe");
+			System.out.println("O contato com esse nome j√° existe");
+		}else if(agendaCheia()) {
+			System.out.println("Agenda cheia. Elimine um contato para adicionar um novo.");
 		}else {
 			boolean buscar = false;
 			for(int i = 0;i<contatos.length && !buscar;i++) {
 				if(contatos[i] == null) {
 					contatos[i] = c;
 					buscar = true;
-					
+
 				}
-				
+
 			}
 			if(buscar) {
-				System.out.println("N˙mero salvo");
+				System.out.println("N√∫mero salvo");
 			}
-			
+
 		}
 	}
-	
+
 
 	public boolean existeContato(Contatos c) {
 		boolean buscar = false;		
@@ -62,7 +64,7 @@ public class Agenda {
 			}
 		}
 		if(!buscar) {
-			System.out.println("Contato n„o encontrado");
+			System.out.println("Contato n√£o encontrado");
 		}
 	}
 	
@@ -75,9 +77,27 @@ public class Agenda {
 			}
 		}
 		if(!buscar) {
-			System.out.println("Contato n„o pode ser eliminado pois n„o existe.");
+			System.out.println("Contato n√£o pode ser eliminado pois n√£o existe.");
 		}else {
 			System.out.println("Contato "+c.getNome()+" eliminado");
 		}
+	}
+	public boolean agendaCheia() {
+		for(int i=0;i<contatos.length;i++) {
+			if(contatos[i] == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public int contatosLivres() {
+		int contadorL=0;
+		for(int i=0;i<contatos.length;i++) {
+			if(contatos[i]==null) {
+				contadorL++;
+			}
+		}
+		return contadorL;
 	}
 }
